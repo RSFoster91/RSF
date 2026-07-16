@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sam Foster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy: #171f30;
+    --navy-deep: #0d1220;
+    --groove: #2a3348;
+    --gold: #c9a24d;
+    --gold-bright: #e0bc6a;
+    --cream: #ece6d8;
+    --ink: #0d0f14;
+    --line: rgba(236,230,216,0.12);
+    --maxw: 920px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--navy);
+    color:var(--cream);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:'Fraunces',serif; margin:0; letter-spacing:-0.01em;}
+  .mono{font-family:'IBM Plex Mono',monospace;}
+  a{color:inherit;}
+  ::selection{background:var(--gold); color:var(--ink);}
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{outline:2px solid var(--gold-bright); outline-offset:3px;}
+
+  /* ---- NAV ---- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:18px clamp(20px,5vw,56px);
+    background:rgba(13,18,32,0.85);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .brand{font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem; color:var(--gold-bright);}
+  nav ul{list-style:none; display:flex; gap:clamp(14px,3vw,32px); margin:0; padding:0;}
+  nav a{text-decoration:none; font-size:0.85rem; color:var(--cream); opacity:0.8; transition:opacity .2s, color .2s;}
+  nav a:hover{opacity:1; color:var(--gold-bright);}
+  nav .tnum{color:var(--gold); margin-right:6px; font-size:0.75rem;}
+  .navlinks{display:flex;}
+  @media(max-width:640px){ nav ul{gap:12px;} nav a span.label{display:none;} }
+
+  /* ---- HERO ---- */
+  .hero{
+    max-width:var(--maxw); margin:0 auto;
+    padding:clamp(56px,10vw,110px) clamp(20px,5vw,56px) clamp(60px,8vw,90px);
+    display:grid; grid-template-columns:1.3fr 1fr; gap:40px; align-items:center;
+  }
+  @media(max-width:760px){ .hero{grid-template-columns:1fr; text-align:left;} }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace; font-size:0.75rem; letter-spacing:0.12em;
+    color:var(--gold); text-transform:uppercase; margin-bottom:14px; display:block;
+  }
+  .hero h1{font-size:clamp(2.4rem,6vw,4rem); font-weight:600; color:var(--cream); line-height:1.05;}
+  .hero h1 em{font-style:normal; color:var(--gold-bright);}
+  .hero p.tag{margin-top:18px; max-width:44ch; color:rgba(236,230,216,0.75); font-size:1.05rem;}
+
+  .social-row{margin-top:30px; display:flex; gap:18px; flex-wrap:wrap;}
+  .social-row a{
+    font-family:'IBM Plex Mono',monospace; font-size:0.78rem;
+    border:1px solid var(--line); padding:8px 14px; border-radius:999px;
+    text-decoration:none; color:var(--cream); transition:border-color .2s, color .2s, background .2s;
+  }
+  .social-row a:hover{border-color:var(--gold); color:var(--gold-bright); background:rgba(201,162,77,0.08);}
+
+  /* ---- VINYL (signature element) ---- */
+  .vinyl-wrap{display:flex; justify-content:center; align-items:center;}
+  .vinyl{
+    width:min(280px,60vw); aspect-ratio:1/1; border-radius:50%; position:relative;
+    background:
+      repeating-radial-gradient(circle at center,
+        #05070c 0px, #05070c 2px,
+        #14192a 3px, #14192a 5px);
+    box-shadow:0 20px 60px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.04);
+    animation:spin 9s linear infinite;
+  }
+  .vinyl::before{
+    content:''; position:absolute; inset:38%; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, var(--gold-bright), var(--gold) 60%, #8a6c2e 100%);
+    box-shadow:0 4px 14px rgba(0,0,0,0.4);
+  }
+  .vinyl::after{
+    content:''; position:absolute; inset:47.5%; border-radius:50%; background:var(--navy-deep);
+  }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  @media(prefers-reduced-motion:reduce){ .vinyl{animation:none;} }
+
+  /* ---- SECTIONS ---- */
+  section{max-width:var(--maxw); margin:0 auto; padding:70px clamp(20px,5vw,56px); border-top:1px solid var(--line);}
+  .section-head{display:flex; align-items:baseline; gap:14px; margin-bottom:36px;}
+  .section-head .tnum{font-family:'IBM Plex Mono',monospace; color:var(--gold); font-size:0.9rem;}
+  .section-head h2{font-size:clamp(1.6rem,3vw,2.1rem); color:var(--cream); font-weight:600;}
+  .section-head .side{margin-left:auto; font-family:'IBM Plex Mono',monospace; font-size:0.72rem; color:rgba(236,230,216,0.45); text-transform:uppercase; letter-spacing:0.1em;}
+
+  /* about */
+  #about p{max-width:62ch; color:rgba(236,230,216,0.82); font-size:1.02rem;}
+  #about .meta{margin-top:22px; display:flex; gap:28px; flex-wrap:wrap; font-family:'IBM Plex Mono',monospace; font-size:0.8rem; color:rgba(236,230,216,0.55);}
+  #about .meta b{color:var(--gold-bright); font-weight:500;}
+
+  /* projects / tracklist */
+  .track{
+    display:grid; grid-template-columns:44px 1fr auto; gap:20px; align-items:start;
+    padding:22px 0; border-bottom:1px solid var(--line);
+  }
+  .track:last-child{border-bottom:none;}
+  .track .tnum{font-family:'IBM Plex Mono',monospace; color:var(--gold); font-size:0.95rem; padding-top:4px;}
+  .track h3{font-size:1.2rem; color:var(--cream); font-weight:600;}
+  .track .tag{font-family:'IBM Plex Mono',monospace; font-size:0.7rem; color:var(--gold-bright); text-transform:uppercase; letter-spacing:0.08em; display:inline-block; margin-top:6px;}
+  .track p{margin:10px 0 0; color:rgba(236,230,216,0.72); font-size:0.95rem; max-width:56ch;}
+  .track .play{
+    align-self:center; font-family:'IBM Plex Mono',monospace; font-size:0.78rem;
+    border:1px solid var(--gold); color:var(--gold-bright); padding:9px 16px; border-radius:999px;
+    text-decoration:none; white-space:nowrap; transition:background .2s, color .2s;
+  }
+  .track .play:hover{background:var(--gold); color:var(--ink);}
+  @media(max-width:560px){ .track{grid-template-columns:32px 1fr;} .track .play{grid-column:2; margin-top:12px; width:fit-content;} }
+
+  /* bench / sports */
+  .bench-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:18px;}
+  .crest{
+    border:1px solid var(--line); border-radius:10px; padding:22px;
+    background:var(--groove);
+  }
+  .crest .tnum{font-family:'IBM Plex Mono',monospace; color:var(--gold); font-size:0.75rem;}
+  .crest h3{font-size:1.05rem; margin-top:8px; color:var(--cream);}
+  .crest p{margin:6px 0 0; font-size:0.88rem; color:rgba(236,230,216,0.65);}
+
+  /* collection / music */
+  .collection-list{display:flex; flex-direction:column;}
+  .cline{
+    display:flex; justify-content:space-between; align-items:center; gap:16px;
+    padding:16px 0; border-bottom:1px dashed var(--line); font-size:0.98rem;
+  }
+  .cline:last-child{border-bottom:none;}
+  .cline .item{color:var(--cream);}
+  .cline .detail{font-family:'IBM Plex Mono',monospace; font-size:0.78rem; color:rgba(236,230,216,0.5); text-align:right;}
+
+  footer{
+    max-width:var(--maxw); margin:0 auto; padding:50px clamp(20px,5vw,56px) 70px;
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:18px;
+    border-top:1px solid var(--line);
+  }
+  footer .fbrand{font-family:'Fraunces',serif; color:var(--gold-bright); font-weight:600;}
+  footer .fmeta{font-family:'IBM Plex Mono',monospace; font-size:0.75rem; color:rgba(236,230,216,0.45);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">S. FOSTER</div>
+  <ul class="navlinks">
+    <li><a href="#about"><span class="tnum">01</span><span class="label">Liner Notes</span></a></li>
+    <li><a href="#builds"><span class="tnum">02</span><span class="label">The Builds</span></a></li>
+    <li><a href="#bench"><span class="tnum">03</span><span class="label">Bench</span></a></li>
+    <li><a href="#collection"><span class="tnum">04</span><span class="label">Collection</span></a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div>
+    <span class="eyebrow">Side A · Now Spinning</span>
+    <h1>Sam Foster —<br><em>builds & plays.</em></h1>
+    <p class="tag">Product owner in healthcare tech by day, working the radiology stack — PACS, RIS, HL7/FHIR. Off the clock: small web tools, bass in hand, and a record always on.</p>
+    <div class="social-row">
+      <a href="#">GitHub ↗</a>
+      <a href="#">LinkedIn ↗</a>
+      <a href="#">Instagram ↗</a>
+      <a href="#">Discogs · .VinylSam ↗</a>
+    </div>
+  </div>
+  <div class="vinyl-wrap">
+    <div class="vinyl" aria-hidden="true"></div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="section-head">
+    <span class="tnum">01</span>
+    <h2>Liner Notes</h2>
+    <span class="side">About</span>
+  </div>
+  <p>I work as a Product Owner in healthcare technology, spending most of my time in the radiology niche — projects like Master Audit Trail and eForms, and building fluency across PACS, RIS, and imaging standards. Outside of work I build small tools for myself and my family, play bass and guitar, and keep a growing vinyl collection spinning in the background.</p>
+  <div class="meta">
+    <span><b>Based in</b> Jacksonville, FL</span>
+    <span><b>Focus</b> Healthcare / Radiology Tech</span>
+    <span><b>Currently</b> Building side projects</span>
+  </div>
+</section>
+
+<section id="builds">
+  <div class="section-head">
+    <span class="tnum">02</span>
+    <h2>The Builds</h2>
+    <span class="side">Apps I've shipped</span>
+  </div>
+
+  <div class="track">
+    <span class="tnum">01</span>
+    <div>
+      <h3>Foster Football Pick'em</h3>
+      <span class="tag">NFL · Confidence Picks</span>
+      <p>A cloud-stored pick'em app for the full NFL season — built so my dad and I can run our own confidence-picks league without spreadsheets.</p>
+    </div>
+    <a class="play" href="#">▶ View</a>
+  </div>
+
+  <div class="track">
+    <span class="tnum">02</span>
+    <div>
+      <h3>Cut Plan Builder</h3>
+      <span class="tag">Fitness · 75 Hard</span>
+      <p>A structured cut-plan tool with 75 Hard integration, built to keep training and nutrition goals on one clean dashboard.</p>
+    </div>
+    <a class="play" href="#">▶ View</a>
+  </div>
+</section>
+
+<section id="bench">
+  <div class="section-head">
+    <span class="tnum">03</span>
+    <h2>Bench</h2>
+    <span class="side">Teams I follow</span>
+  </div>
+  <div class="bench-grid">
+    <div class="crest">
+      <span class="tnum">PL</span>
+      <h3>Tottenham Hotspur</h3>
+      <p>Premier League. To Dare Is To Do.</p>
+    </div>
+    <div class="crest">
+      <span class="tnum">NFL</span>
+      <h3>NFL</h3>
+      <p>Sunday football, full schedule tracked year-round.</p>
+    </div>
+    <div class="crest">
+      <span class="tnum">FIFA</span>
+      <h3>World Cup</h3>
+      <p>Every four years, no exceptions.</p>
+    </div>
+  </div>
+</section>
+
+<section id="collection">
+  <div class="section-head">
+    <span class="tnum">04</span>
+    <h2>The Collection</h2>
+    <span class="side">Instruments & records</span>
+  </div>
+  <div class="collection-list">
+    <div class="cline">
+      <span class="item">Fender Squier Jaguar Bass</span>
+      <span class="detail">4-STRING · MAIN</span>
+    </div>
+    <div class="cline">
+      <span class="item">Taylor Academy 12e</span>
+      <span class="detail">ACOUSTIC-ELECTRIC</span>
+    </div>
+    <div class="cline">
+      <span class="item">Vinyl collection</span>
+      <span class="detail">700+ · DISCOGS: .VINYLSAM</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="fbrand">S. FOSTER</span>
+  <span class="fmeta">© 2026 · SIDE A, TRACK 01–04 · MADE IN JACKSONVILLE, FL</span>
+</footer>
+
+</body>
+</html>
